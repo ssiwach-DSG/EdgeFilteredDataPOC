@@ -1,0 +1,33 @@
+﻿<Properties StartupConfiguration="{A4AE2060-6A17-49D7-82D1-6CFADA874F38}|Default">
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/DKS0692282/Documents/GitHub/POC/EdgeFilteredDataPOC/EdgeFilteredDataPOC/EdgeFilteredDataPOC.cs" relfile="EdgeFilteredDataPOC/EdgeFilteredDataPOC.cs" line="17" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="README.md">
+    <Files>
+      <File FileName="EdgeFilteredDataPOC/EdgeFilteredDataPOC.cs" Line="17" Column="1" />
+      <File FileName="EdgeFilteredDataPOC/local.settings.json" />
+      <File FileName="EdgeFilteredDataPOC/host.json" />
+      <File FileName="EdgeFilteredDataPOC/Properties/launchSettings.json" />
+      <File FileName="README.md" Line="2" Column="2" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="EdgeFilteredDataPOC" expanded="True" selected="True">
+            <Node name="EdgeFilteredDataPOC" expanded="True">
+              <Node name="Properties" expanded="True">
+                <Node name="PublishProfiles" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.EdgeFilteredDataPOC PreferredExecutionTarget="MonoDevelop.Default" />
+  <MultiItemStartupConfigurations />
+</Properties>
