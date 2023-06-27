@@ -13,7 +13,7 @@ namespace EdgeFilteredDataPOC
     public class EdgeFilteredDataPOC
     {
         [FunctionName("EdgeFilteredDataPOC")]
-        public async Task RunAsync([BlobTrigger("filtered-productdata/{name}", Connection = "AzureWebJobsStorage")] Stream myBlob, string name, ILogger log)
+        public async Task RunAsync([BlobTrigger("edge-sku-storage/{name}", Connection = "AzureWebJobsStorage")] Stream myBlob, string name, ILogger log)
         {
             log.LogInformation($"C# Blob trigger function Processed blob\n Name:{name} \n Size: {myBlob.Length} Bytes");
 
@@ -66,14 +66,14 @@ namespace EdgeFilteredDataPOC
                 // calling Redis to upload file
                 log.LogInformation($"Connecting to redis");
 
-                var redis = ConnectionMultiplexer.Connect("FilteredProductData-Edge.redis.cache.windows.net:6380,password=YTpbqYyoXIeAYdvAHmyZnalHgOuusxj2CAzCaI3PyBQ=,ssl=True,abortConnect=False");
+                var redis = ConnectionMultiplexer.Connect("redis-product-catalog-edge-cache-np.redis.cache.windows.net:6380,password=KqpQvcETO3pZ4UIESsdBLJ7lkAuCpb4LvAzCaDviixs=,ssl=True,abortConnect=False");
                 var redisDatabase = redis.GetDatabase();
 
                 List<KeyValuePair<RedisKey, RedisValue>> load = new List<KeyValuePair<RedisKey, RedisValue>>();
 
                 // getting current keys                
                 log.LogInformation("Getting data back before pushing load-");
-                var server = redis.GetServer("FilteredProductData-Edge.redis.cache.windows.net:6380");
+                var server = redis.GetServer("redis-product-catalog-edge-cache-np.redis.cache.windows.net:6380");
                 foreach (var key in server.Keys())
                 {
                     log.LogInformation($"KeyName - {key}");
