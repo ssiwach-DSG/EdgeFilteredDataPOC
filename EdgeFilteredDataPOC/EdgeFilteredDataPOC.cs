@@ -35,6 +35,13 @@ namespace EdgeFilteredDataPOC
         private static async Task<int> ReadBlobAndUpdateRedisCacheAsync(Stream myBlob, ILogger log)
         {
             log.LogInformation($" Uploading to Redis started");
+            
+            // calling Redis to upload file
+            log.LogInformation($"Connecting to redis");
+
+            var redis = await ConnectionMultiplexer.ConnectAsync(
+                "redis-product-catalog-edge-cache-np.redis.cache.windows.net:6380,password=D5BytydJNqZLf6JS5Y1iT3C99tudrLU05AzCaEFbsjY=,ssl=True,abortConnect=False");
+            var redisDatabase = redis.GetDatabase();
 
             int keysWrittenToCache = 0;
 
@@ -47,55 +54,70 @@ namespace EdgeFilteredDataPOC
                 while (!reader.EndOfStream)
                 {
                     // assuming data format of xxxx,yyyyy
+                    
+                    // dont write header line to cache
+                    string headerLine = reader.ReadLine();
+                    
                     var line = reader.ReadLine()?.Split(new char[] { ',' });
 
                     /* Ignore lines which could not be read or do not have at least one delimiter. */
                     if (line != null && line.Length > 1)
                     {
+                        // sku, status
                         batch.Add(line[0], line[1]);
+
+                        var hashEntry = new HashEntry(line[0], line[1]);
+                        
+                        log.LogInformation($"Key = {hashEntry.Name}, Value = {hashEntry.Value}");
+                        
+                        // add entry to hash
+                        redisDatabase.HashSet("edge_skus", new[] { hashEntry });
                         counter++;
 
                     }
                 }
-                foreach (var item in batch)
-                {
-                    log.LogInformation($"Key = {item.Key}, Value = {item.Value}");
-                }
+                // foreach (var item in batch)
+                // {
+                //     log.LogInformation($"Key = {item.Key}, Value = {item.Value}");
+                // }
                 keysWrittenToCache += batch.Count;
 
-                // calling Redis to upload file
-                log.LogInformation($"Connecting to redis");
 
-                var redis = ConnectionMultiplexer.Connect("redis-product-catalog-edge-cache-np.redis.cache.windows.net:6380,password=KqpQvcETO3pZ4UIESsdBLJ7lkAuCpb4LvAzCaDviixs=,ssl=True,abortConnect=False");
-                var redisDatabase = redis.GetDatabase();
 
-                List<KeyValuePair<RedisKey, RedisValue>> load = new List<KeyValuePair<RedisKey, RedisValue>>();
-
-                // getting current keys                
-                log.LogInformation("Getting data back before pushing load-");
-                var server = redis.GetServer("redis-product-catalog-edge-cache-np.redis.cache.windows.net:6380");
-                foreach (var key in server.Keys())
-                {
-                    log.LogInformation($"KeyName - {key}");
-                }
-
-                log.LogInformation("Loading  new  data-");
-                batch.ToList().ForEach((item) =>
-                {
-                    load.Add(new KeyValuePair<RedisKey, RedisValue>(item.Key, item.Value));
-                });
+                // List<KeyValuePair<RedisKey, RedisValue>> load = new List<KeyValuePair<RedisKey, RedisValue>>();
+                //
+                // // getting current keys                
+                // log.LogInformation("Getting data back before pushing load-");
+                // var server = redis.GetServer("redis-product-catalog-edge-cache-np.redis.cache.windows.net:6380");
+                // foreach (var key in server.Keys())
+                // {
+                //     log.LogInformation($"KeyName - {key}");
+                // }
+                //
+                // log.LogInformation("Loading  new  data-");
+                // batch.ToList().ForEach((item) =>
+                // {
+                //     load.Add(new KeyValuePair<RedisKey, RedisValue>(item.Key, item.Value));
+                // });
+                
+                // HashEntry[] hash = batch.Select(
+                //     pair => new HashEntry(pair.Key, pair.Value)).ToArray();
+                
 
                 // push  to redis
-                await redisDatabase.StringSetAsync(load.ToArray());
+                // await redisDatabase.StringSetAsync(hash.ToArray());
+                // await redisDatabase.hash()("edge_skus");
+                // await redisDatabase.HashSetAsync("edge_skus", hash);
+                
                 log.LogInformation("uploading to redis ends");
 
                 // get all keys back
-                log.LogInformation("Getting data back-");
+                // log.LogInformation("Getting data back-");
                 //var server = redis.GetServer("FilteredProductData-Edge.redis.cache.windows.net:6380");
-                foreach (var key in server.Keys())
-                {
-                    log.LogInformation($"KeyName - {key}");
-                }
+                // foreach (var key in server.Keys())
+                // {
+                //     log.LogInformation($"KeyName - {key}");
+                // }
 
                 return keysWrittenToCache;
 

@@ -1,0 +1,730 @@
+{
+  "mappings": {
+    "_doc": {
+      "properties": {
+        "changeset": {
+          "type": "text",
+          "fields": {
+           "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "color": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "details": {
+          "properties": {
+            "ecode": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "result": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "skuCount": {
+              "type": "long"
+            },
+            "version": {
+              "type": "long"
+            }
+          }
+        },
+        "dimension": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "ecode": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "ecodeCount": {
+          "type": "long"
+        },
+        "elasticLoadTableCount": {
+          "type": "long"
+        },
+        "hierarchy": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "id": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "lastUpdated": {
+          "type": "date"
+        },
+        "logDate": {
+          "type": "date"
+        },
+        "productDataMergeQueueCount": {
+          "type": "long"
+        },
+        "queryTime": {
+          "type": "float"
+        },
+        "size": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "sku": {
+          "type": "long"
+        },
+        "skuCount": {
+          "type": "long"
+        },
+        "style": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "styleDescription": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "styleText": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "totalTime": {
+          "type": "float"
+        },
+        "updateTime": {
+          "type": "float"
+        },
+        "variants": {
+          "properties": {
+            "Action": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Ammo Model": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Ammunition": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Animal": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Ankle": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Arrow Size": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Assembly Options": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Basketball Size": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Bat Length": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Bat Weight": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Bed Size": {
+              "type": "text",
+              "fields": {
+                "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+               }
+              }
+            },
+            "Blade Color": {
+              "type": "text",
+              "fields": {
+                "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+                }
+             }
+            },
+            "Blade Diameter": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Bounce": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Bow Draw Weight": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Brace Size": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Broadhead Grain": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Bullet Weight": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "COLOR": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Capacity": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Choke Tube Gauge": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Choke Tube Gun Model": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Club Length": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Color": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Cutting Diameter": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "DIMENSION": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "DShoe Width": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Designs": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Dimensions": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Drivetrain Manufacturer": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "EM-Carrier": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "EM-Snow Goggle Lens Tint": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "EM-Snow Goggle Rec Conditions": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Elbow": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Embroidery": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Finish": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Fitness Shipping Method": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Flavor": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Flex": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Football League Age": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Frame Color": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Frame Size": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Gauge": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Gear Ratio": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Glove Hand": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Glove Throw": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Glove Weight": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Glove or Mitt": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Golf Grip Size": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Golf Push Cart Battery": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Golf Shaft Weight": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Golf Wedge Bounce": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Golf Wedge Grind": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Grip": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Grip Size": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Gun Barrel Length": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Gun Model": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Gun Model/Barrel Length": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Gun Safe Lock Type": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "HS Flex": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "HS Pattern": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "HS Type": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Hand": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Hand Size": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Handle Color": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Holster Model": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Hook Pack Size": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Hook Size": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Hooks": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Includes": {
+              "type": "text",
+              "fields": {
+                "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+               }
+              }
+            },
+            "Inseam": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Insole Shoe Size": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Knee": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Lacrosse Whip Level": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Length": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Length (gen)": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Length-Weight": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Lens Color": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Line Length": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Line Size": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Line Type": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Line Weight": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Loft": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Magnification": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Max Thrust": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Megapixels-INS": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Paint Color": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Pant Length": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Phone Size": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Pieces": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Poles": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Pound Test": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Power": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Reel Size": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Retrieve": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Rod Action": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Rod Length": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "SB Length": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "SIZE": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Scent": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Shaft": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Shaft Bend": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Shaft Length": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Shaft Tip Size": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Shaft Weight": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Shell Length": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Shipping Method": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Shoe Size": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Shoe Width": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Shot Size": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Sink Rate": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Size": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Size w/dash": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Size-Cup": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Skate Shoe Size": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Skate Size": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Ski Brake Width": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Skort Length": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Sleeping Bag Size": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Snow Goggle Lens Finish": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Snow Sports": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Snowboard Goggle Lens Coating": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Sock Size": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Sports Team": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Spring Length": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Swivel Size": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Taper Style": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Text Color": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Thickness": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Volts": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Wattage": {
+              "type": "text",
+             "fields": {
+                "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+                }
+              }
+            },
+            "Weight": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Wheel Size": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Width": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "Wrist": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "eCom Shoe Size": {
+                  "type": "keyword",
+                  "ignore_above": 256
+},
+            "eCom Shoe Width": {
+                  "type": "keyword",
+                  "ignore_above": 256
+}
+          }
+        },
+        "vpn": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "attributes" {
+          "heiarchy": "00-11-11"
+        }
+      }
+    }
+  }
+}

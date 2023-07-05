@@ -16,3 +16,7 @@ func azure functionapp publish pde-edge-filtereddata-poc
 
 func azure functionapp publish ProductFilterdData-EdgeFunction
 
+func azure functionapp publish pde-poc-load-test
+
+func azure functionapp publish pdepoc2
+
