@@ -8,6 +8,7 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Logging;
 using StackExchange.Redis;
+using String = System.String;
 
 namespace EdgeFilteredDataPOC
 {
@@ -50,7 +51,7 @@ namespace EdgeFilteredDataPOC
             using (var reader = new StreamReader(myBlob))
             {
                 // var allHashEntry = new List<HashEntry>();
-                var allHashEntry = new Dictionary<String, HashEntry>();
+                var allHashEntry = new List<RedisValue>();
 
                 while (!reader.EndOfStream)
                 {
@@ -69,8 +70,7 @@ namespace EdgeFilteredDataPOC
 
                         // allHashEntry.Add(new HashEntry(line[0], line[1]));
                         allHashEntry.Add(
-                            "edge_skus:" + line[0], 
-                            new HashEntry("status", line[1])
+                            new RedisValue(line[0] + ":" + line[1])
                             );
                         
                         // log.LogInformation($"Key = {hashEntry.Name}, Value = {hashEntry.Value}");
@@ -111,17 +111,22 @@ namespace EdgeFilteredDataPOC
                 // });
 
                 int counter = 0;
-                Parallel.ForEach(allHashEntry, (hash) =>
-                    {
-                        // 
-                        redisDatabase.HashSetAsync(hash.Key, new []{hash.Value});
-                        if (counter%100_000 == 0)
-                        {
-                            log.LogInformation($"Inserted {counter}");
-                        }
-                        counter++;
-                    }
-                );
+                var key = new RedisKey("edge_sku_status");
+                // Parallel.ForEach(allHashEntry, (skustatus) =>
+                //     {"
+                //         // 
+                //         redisDatabase.SetAddAsync(key, new RedisValue(skustatus));
+                //         if (counter%100_000 == 0)
+                //         {
+                //             log.LogInformation($"Inserted {counter}");
+                //         }
+                //         counter++;
+                //     }
+                // );
+                allHashEntry.Chunk(500_000).ToList().ForEach((chunk) =>
+                {
+                    redisDatabase.SetAddAsync(key, chunk);
+                });
                 
                 // HashEntry[] hash = batch.Select(
                 //     pair => new HashEntry(pair.Key, pair.Value)).ToArray();
