@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -48,31 +49,34 @@ namespace EdgeFilteredDataPOC
             /* Read contents of the updated BLOB */
             using (var reader = new StreamReader(myBlob))
             {
-                var counter = 0;
-                var batch = new Dictionary<string, string>();
+                // var allHashEntry = new List<HashEntry>();
+                var allHashEntry = new Dictionary<String, HashEntry>();
 
                 while (!reader.EndOfStream)
                 {
                     // assuming data format of xxxx,yyyyy
                     
                     // dont write header line to cache
-                    string headerLine = reader.ReadLine();
+                    // string headerLine = await reader.ReadLineAsync();
                     
-                    var line = reader.ReadLine()?.Split(new char[] { ',' });
+                    var line = (await reader.ReadLineAsync())?.Split(new[] { ',' });
 
                     /* Ignore lines which could not be read or do not have at least one delimiter. */
                     if (line != null && line.Length > 1)
                     {
                         // sku, status
-                        batch.Add(line[0], line[1]);
+                        // batch.Add(line[0], line[1]);
 
-                        var hashEntry = new HashEntry(line[0], line[1]);
+                        // allHashEntry.Add(new HashEntry(line[0], line[1]));
+                        allHashEntry.Add(
+                            "edge_skus:" + line[0], 
+                            new HashEntry("status", line[1])
+                            );
                         
-                        log.LogInformation($"Key = {hashEntry.Name}, Value = {hashEntry.Value}");
+                        // log.LogInformation($"Key = {hashEntry.Name}, Value = {hashEntry.Value}");
                         
                         // add entry to hash
-                        redisDatabase.HashSet("edge_skus", new[] { hashEntry });
-                        counter++;
+                        // await redisDatabase.HashSetAsync("edge_skus", new[] { hashEntry });
 
                     }
                 }
@@ -80,7 +84,7 @@ namespace EdgeFilteredDataPOC
                 // {
                 //     log.LogInformation($"Key = {item.Key}, Value = {item.Value}");
                 // }
-                keysWrittenToCache += batch.Count;
+                keysWrittenToCache += allHashEntry.Count;
 
 
 
@@ -94,11 +98,30 @@ namespace EdgeFilteredDataPOC
                 //     log.LogInformation($"KeyName - {key}");
                 // }
                 //
-                // log.LogInformation("Loading  new  data-");
-                // batch.ToList().ForEach((item) =>
+                log.LogInformation($"Loading  new  data -  Total = {allHashEntry.Count}");
+                // // 1, 048,000
+                // allHashEntry
+                //     // .Chunk(500_000)
+                //     .ToList()
+                //     // .ForEach();
+                //     .ForEach((hash) =>
                 // {
-                //     load.Add(new KeyValuePair<RedisKey, RedisValue>(item.Key, item.Value));
+                //     // log.LogInformation($"Batch Total = {chunk.Length}");
+                //     redisDatabase.HashSetAsync(hash.Key, hash.Value);
                 // });
+
+                int counter = 0;
+                Parallel.ForEach(allHashEntry, (hash) =>
+                    {
+                        // 
+                        redisDatabase.HashSetAsync(hash.Key, new []{hash.Value});
+                        if (counter%100_000 == 0)
+                        {
+                            log.LogInformation($"Inserted {counter}");
+                        }
+                        counter++;
+                    }
+                );
                 
                 // HashEntry[] hash = batch.Select(
                 //     pair => new HashEntry(pair.Key, pair.Value)).ToArray();
